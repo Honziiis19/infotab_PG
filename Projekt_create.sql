@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS `projdb`.`uzivatele` (
   `email` VARCHAR(45) NOT NULL UNIQUE,
   `heslo` VARCHAR(45) NOT NULL,
   `admin` ENUM('0', '1') NOT NULL,
+  )
 ENGINE = InnoDB;
 
 
@@ -36,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `projdb`.`prezentace` (
   `scroll text` VARCHAR(1000) NULL,
   `cas` DATETIME NULL,
   `obrazky_URL` VARCHAR(2000) NULL,
+  )
 ENGINE = InnoDB;
 
 

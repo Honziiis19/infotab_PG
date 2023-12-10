@@ -11,18 +11,18 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema projdb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `projdb` DEFAULT CHARACTER SET utf8 ;
-USE `projdb` ;
+CREATE SCHEMA IF NOT EXISTS `infotabdb` DEFAULT CHARACTER SET utf8 ;
+USE `infotabdb` ;
 
 -- -----------------------------------------------------
 -- Table `mydb`.`uzivatele`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `projdb`.`uzivatele` (
-  `iduzivatele` INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
+CREATE TABLE IF NOT EXISTS `infotabdb`.`uzivatele` (
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
   `jmeno` VARCHAR(45) NOT NULL UNIQUE,
   `email` VARCHAR(45) NOT NULL UNIQUE,
   `heslo` VARCHAR(45) NOT NULL,
-  `admin` ENUM('0', '1') NOT NULL,
+  `admin` ENUM('0', '1') NOT NULL
   )
 ENGINE = InnoDB;
 
@@ -30,36 +30,24 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `mydb`.`prezentace`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `projdb`.`prezentace` (
-  `idprezentace` INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
+CREATE TABLE IF NOT EXISTS `infotabdb`.`prezentace` (
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
   `nadpis` VARCHAR(100) NULL,
   `obsah` VARCHAR(1000) NULL,
   `scroll text` VARCHAR(1000) NULL,
-  `cas` DATETIME NULL,
-  `obrazky_URL` VARCHAR(2000) NULL,
+  `vyditelnost` DATETIME NULL,
+  `created.by` VARCHAR(50),
+  `modified.by` VARCHAR(50),
+  `aktivni` ENUM("0", "1"),
+  FOREIGN KEY (uzivatele_id) REFERENCES uzivatele(id)
   )
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `projdb`.`uzivatele_has_prezentace`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `projdb`.`uzivatele_has_prezentace` (
-  `uzivatele_iduzivatele` INT NOT NULL,
-  `prezentace_idprezentace` INT NOT NULL,
-  PRIMARY KEY (`uzivatele_iduzivatele`, `prezentace_idprezentace`),
-  INDEX `fk_uzivatele_has_prezentace_prezentace1_idx` (`prezentace_idprezentace` ASC) VISIBLE,
-  INDEX `fk_uzivatele_has_prezentace_uzivatele_idx` (`uzivatele_iduzivatele` ASC) VISIBLE,
-  CONSTRAINT `fk_uzivatele_has_prezentace_uzivatele`
-    FOREIGN KEY (`uzivatele_iduzivatele`)
-    REFERENCES `projdb`.`uzivatele` (`iduzivatele`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_uzivatele_has_prezentace_prezentace1`
-    FOREIGN KEY (`prezentace_idprezentace`)
-    REFERENCES `projdb`.`prezentace` (`idprezentace`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+CREATE TABLE IF NOT EXISTS `infotab`.`snimky` (
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
+  FOREIGN KEY (prezentace_id) REFERENCES prezentace(id),
+  `htmltext` VARCHAR(5000)
+  )
 ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;

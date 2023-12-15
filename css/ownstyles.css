@@ -1,0 +1,24 @@
+.menuItem, a:link, a:visited {
+    text-decoration: none;
+    font-family: monospace;
+    font-size: 55;
+    color: grey;
+}
+body {
+    background-color: black;
+}
+.lobby {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.password {
+    position: absolute;
+    top: 10px;
+    left: 50px;
+}
+.username {
+    position: absolute;
+    top: 10px;
+    left: 85%;
+}

@@ -14,13 +14,10 @@
             <a class="nav-link" href="../lobby_user.php" style="font-family: monospace; color: black; font-size: large;">Menu</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" style="font-family: monospace; color: black; font-size: large;">Nová prezentace</a>
+            <a class="nav-link" href="editor.php" style="font-family: monospace; color: black; font-size: large;">Nová prezentace</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#" style="font-family: monospace; color: black; font-size: large;">Účet</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#" style="font-family: monospace; color: black; font-size: large;">Disabled</a>
+            <a class="nav-link" href="account.php" style="font-family: monospace; color: black; font-size: large;">Účet</a>
           </li>
         </ul>
     </div>

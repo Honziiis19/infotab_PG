@@ -19,7 +19,7 @@
         <td class="table-dark">Vyditelnost</td>
         <td class="table-dark">Upravil</td>
     </thead>
-    <tr class="monospace table-dark">
+    <tr class="table-dark">
         <td class="table-dark">Nadpis</td>
         <td class="table-dark">Obsah</td>
         <td class="table-dark">Vyditelnost</td>

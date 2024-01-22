@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/ownstyles.css">
 </head>
-<?php require "nav/nav_admin.php"; ?>
+<?php if(isset($_SESSION["loggedin"] && $_SESSION["loggedin"] === true) {if($_SESSION["user"]=="admin") {require "nav/nav_admin.php"; } else {require "nav/nav_user.php";}}); ?>
 <body>
     <!-- aktivní prezentace -->
 

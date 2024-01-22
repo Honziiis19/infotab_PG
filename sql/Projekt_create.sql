@@ -19,13 +19,15 @@ USE `infotabdb` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `infotabdb`.`uzivatele` (
   `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY UNIQUE,
-  `jmeno` VARCHAR(45) NOT NULL UNIQUE,
+  `jmeno` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL UNIQUE,
   `heslo` VARCHAR(45) NOT NULL,
   `admin` ENUM('0', '1') NOT NULL
   )
 ENGINE = InnoDB;
-
+-- index pro jmeno
+CREATE INDEX idx_jmeno
+ON uzivatele(jmeno);
 
 -- -----------------------------------------------------
 -- Table `mydb`.`prezentace`

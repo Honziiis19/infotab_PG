@@ -8,7 +8,7 @@ $port=3306;
 $socket="";
 $user="root";
 $password="root";
-$dbname="projdb";
+$dbname="infotabdb";
 
 $con = mysqli_connect($host, $user, $password, $dbname, $port, $socket);
 if ($con) {
@@ -19,7 +19,7 @@ if ($con) {
 }
 
 // JSON nad uzivatele 
-$query = "SELECT id, email, role FROM projdb.uzivatele";
+$query = "SELECT id, email, admin FROM infotabdb.uzivatele";
 $sqlstat = mysqli_query($con, $query);
 if ($sqlstat) {
     //echo "SQL prikaz uspesne vykonan";

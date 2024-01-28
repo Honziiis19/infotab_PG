@@ -1,14 +1,11 @@
 <?php
+// funkce pro pripojeni k DB aj
+require_once "service/session.php";
+require_once "service/connect_db.php";
+require_once "service/utils.php";
 
 // zahrneme def. konstant
 require "const/const.php";
-
-
-// funkce pro pripojeni k DB aj.
-require_once "service/connect_db.php";
-require_once "service/utils.php";
-require_once "service/session.php";
-
 
 // pokud form. odeslan, pak pokus o prihlaseni
 if (isset($_POST["email"])) { // isset() vraci true
@@ -17,18 +14,18 @@ if (isset($_POST["email"])) { // isset() vraci true
     // jsou spravne (dotazem do DB)
     $con = connect_db();
     if ($con) {
-        $sql = "select heslo, admin from uzivatele
+        $sql = "select id, heslo, admin from uzivatele
                 where email = '".$_POST["email"]."'";
         $sqlstat = mysqli_query($con, $sql);
         if ($row = mysqli_fetch_assoc($sqlstat)) {
             // v $row je zaznam uzivatele
-            if (md5($_POST['heslo']) == $row["heslo"]) {
+            if ($_POST['heslo'] == $row["heslo"]) {
                 // hesla sedi (co zadal uziv. do form a co je v DB)
                 $_SESSION["logged_in"] = true;
                 $_SESSION["email"] = $_POST["email"];
                 $_SESSION["admin"] = $row["admin"];
-                header("location: lobby.php"); //general lobby - neexistuje ještě
-                if ($_SESSION["admin"] == 1) {header("Location: lobby_admin.php");} else {header("Location: lobby_user.php");};
+                $_SESSION['user_id'] = $row["id"];
+                header("location: lobby.php"); //general lobby
             } else { // heslo nesedi
                 $_SESSION["logged_in"] = false;
                 echo '<script>alert("Chybný email nebo heslo")</script>';

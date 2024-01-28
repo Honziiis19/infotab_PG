@@ -1,3 +1,11 @@
+<?php
+if (isset($_GET['logout'])) {
+    session_unset();
+    session_destroy();
+    header('Location: login.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,22 +15,25 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
 </head>
 <body style="background-color: grey;">
-  <nav class="navbar navbar-dark bg-light">
+  <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
         <ul class="navbar nav mx-auto">
           <li class="nav-item">
-            <a class="nav-link" href="lobby_admin.php" style="font-family: monospace; color: black; font-size: large;">Menu</a>
+            <a class="nav-link" href="lobby.php" style="font-family: monospace; color: white; font-size: large;">Menu</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="editor.php" style="font-family: monospace; color: black; font-size: large;">Nová prezentace</a>
+            <a class="nav-link" href="pres.php?new=1" style="font-family: monospace; color: white; font-size: large;">Nová prezentace</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="users.php" style="font-family: monospace; color: black; font-size: large;">Uživatelé</a>
+            <a class="nav-link" href="users.php" style="font-family: monospace; color: white; font-size: large;">Uživatelé</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="account.php" style="font-family: monospace; color: black; font-size: large;">Účet</a>
+            <a class="nav-link" href="account.php" style="font-family: monospace; color: white; font-size: large;">Účet</a>
           </li>
-        </ul>
+          <li class="nav-item">
+            <a class="nav-link" href="?logout" style="font-family: monospace;">Odhlásit se</a>
+          </li>
+</ul>
     </div>
   </nav>
 <script src="../js/bootstrap.js"></script>

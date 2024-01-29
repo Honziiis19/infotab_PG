@@ -1,3 +1,5 @@
+<!-- TODO - mazání prezentací -->
+
 <?php require_once "service/session.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,17 +31,33 @@
 
     $con = mysqli_connect($host, $user, $password, $dbname, $port, $socket);
     if ($con) {
-        // ok
-        // return $con; // Remove this line, as you can't return from outside a function
     } else {
         echo 'Could not connect to the database server' . mysqli_connect_error();
-        // return false; // Remove this line, as you can't return from outside a function
     }
     require "const/const.php";
         ?>
 <body>
     <!-- aktivní prezentace snad někdy -->
-    
+    <?php 
+        function active($con) {
+            if($_SESSION["admin"] == 1) {
+                $sql = "SELECT id, nadpis FROM infotabdb.prezentace";
+                $result = mysqli_query($con, $sql);
+                
+                echo '<h2 class="text-center" style="font-family: monospace;">Aktivní prezentace</h2>';
+                echo '<form method="POST" class= "mt-2 mx-auto w-75" style= "font-family: monospace;" action="updateactpresentation.php">';
+                echo '<select class="form-select bg-dark text-white" name="selectedPresentation">';
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                echo '<option value="'.$row['id'].'">'.$row['nadpis'].'</option>';
+                }
+                echo '</select>';
+                echo '<input type="submit" class="btn btn-primary bg-dark mt-1" value="Potvrdit">';
+                echo '</form>';
+            }
+        }
+        active($con);
+    ?>
     <!-- tabulka na základě sql databáze -->
     <?php
         if($_SESSION["admin"] == 1) {
@@ -51,7 +69,7 @@
         };
 
         if(mysqli_num_rows($result) > 0) {
-            echo '<table style="font-family: monospace;" class="table table-dark table-striped table-hover w-75 position-relative start-50 translate-middle-x">';
+            echo '<table style="font-family: monospace;" class="table table-dark table-striped table-hover mx-auto mt-3 w-75">';
             echo '<thead class="table-dark">';
             echo '<td class="table-dark">Nadpis</td>';
             echo '<td class="table-dark">Obsah</td>';
@@ -77,7 +95,7 @@
                         echo '<input type="hidden" name="'.htmlspecialchars($key).'" value="'.htmlspecialchars($value).'">';
                     }
                 }
-                echo '<input type="submit" value="Select">';
+                echo '<input type="submit" class="btn btn-primary bg-dark" value="Upravit">';
                 echo '</form>';
                 echo '</td>';
                 echo '</tr>';

@@ -1,4 +1,6 @@
 <?php
+// TODO - opravit editaci
+
     // pripojeni k DB
     $host = "localhost";
     $port = 3306;
@@ -16,7 +18,7 @@
 require_once "service/session.php";
 require "const/const.php";
 
-if(!(isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] == 1)) { header("Location: login.php"); exit;}
+if(!(isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] == 1)) { header("Location: login.php"); exit;};
 
 $slides = [];
 
@@ -93,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             newSlide.id = newSlideId;
             document.getElementById('slidesContainer').appendChild(newSlide);
 
-            document.addEventListener('DOMContentLoaded', function() { initTinyMCE(newSlideId); });
+            initTinyMCE(newSlideId);
 
             let deleteButton = document.createElement('button');
             deleteButton.type = 'button';

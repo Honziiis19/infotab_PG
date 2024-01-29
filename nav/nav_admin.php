@@ -31,6 +31,9 @@ if (isset($_GET['logout'])) {
             <a class="nav-link" href="account.php" style="font-family: monospace; color: white; font-size: large;">Účet</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="showmode.php" style="font-family: monospace; color: white; font-size: large;">Showmode</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="?logout" style="font-family: monospace;">Odhlásit se</a>
           </li>
 </ul>

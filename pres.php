@@ -1,4 +1,7 @@
 <?php 
+
+    // TODO - ukladani creator kdyz $_SESSION["edit"] = false + ukladani modiefier kdyz $_SESSION["edit"] = true
+
     require_once "service/session.php";
     // kontrola zda vytvareni nove prezentace
     if (isset($_GET['new'])) {

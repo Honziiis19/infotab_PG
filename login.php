@@ -25,6 +25,7 @@ if (isset($_POST["email"])) { // isset() vraci true
                 $_SESSION["email"] = $_POST["email"];
                 $_SESSION["admin"] = $row["admin"];
                 $_SESSION['user_id'] = $row["id"];
+                $_SESSION["jmeno"] = $row["jmeno"];
                 header("location: lobby.php"); //general lobby
             } else { // heslo nesedi
                 $_SESSION["logged_in"] = false;

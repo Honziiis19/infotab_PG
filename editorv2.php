@@ -1,5 +1,7 @@
 <?php
-// TODO - opravit editaci
+// TODO - opravit editaci; asi vymazat všechny data a nahrát celé znova
+
+// $_SESSION["id"] je id editované prezentace
 
     // pripojeni k DB
     $host = "localhost";
@@ -36,19 +38,23 @@ if ($_SESSION["edit"] && isset($_SESSION["id"])) { //$edit se vypíná pokud vst
 //odlišné $sql při odišném editu
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if($_SESSION["edit"] == true) {
-        foreach ($_POST['slides'] as $slideId => $slideContent) {
-            $escapedContent = mysqli_real_escape_string($con, $slideContent);
-            $sql = "UPDATE infotabdb.snimky SET htmltext = '$escapedContent' WHERE id = ".intval($slideId);
-        }
-         //mel by probehnout update
+            $sql = "DELETE FROM infotabdb.snimky WHERE prezentace_id = ".$_SESSION["id"].";";
+            if (!mysqli_query($con, $sql)) {
+                echo "Error: " . mysqli_error($con);
+            };
+            foreach ($_POST['slides'] as $slideContent) {
+                $escapedContent = mysqli_real_escape_string($con, $slideContent);
+                // $sql = "UPDATE infotabdb.snimky SET htmltext = '$escapedContent' WHERE id = ".intval($slideId);
+                $sql = "INSERT INTO infotabdb.snimky(prezentace_id, htmltext) VALUES ({$_SESSION['id']}, '$escapedContent');";
                 if (!mysqli_query($con, $sql)) {
                     echo "Error: " . mysqli_error($con);
                 };
-        header("location: lobby.php");        
+            }
+            header("location: lobby.php");        
         } else {
             foreach ($_POST['slides'] as $slideContent) {
                 $escapedContent = mysqli_real_escape_string($con, $slideContent);
-                $sql = "INSERT INTO infotabdb.snimky(prezentace_id, htmltext) VALUES ({$_SESSION['p_id']}, '$escapedContent')";
+                $sql = "INSERT INTO infotabdb.snimky(prezentace_id, htmltext) VALUES ({$_SESSION['p_id']}, '$escapedContent');";
                 if (!mysqli_query($con, $sql)) {
                     echo "Error: " . mysqli_error($con);
             };

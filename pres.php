@@ -42,9 +42,9 @@
 
         // edit se vypina pri pripojeni pres navbar
         if($_SESSION["edit"] == true) {
-            $sql = "UPDATE infotabdb.prezentace SET nadpis ='".$_POST['nadpis']."', obsah ='".$_POST['obsah']."', scrolltext ='".$_POST['scroll-text']."' WHERE id = ".$_SESSION["id"].";";
+            $sql = "UPDATE infotabdb.prezentace SET nadpis ='".$_POST['nadpis']."', obsah ='".$_POST['obsah']."', scrolltext ='".$_POST['scroll-text']."', modifiedby = '".$_SESSION['jmeno']."' WHERE id = ".$_SESSION["id"].";";
         } else {
-            $sql = "INSERT INTO infotabdb.prezentace (nadpis, obsah, scrolltext, vyditelnost, createdby, modifiedby, aktivni, uzivatele_id) VALUES ('$nadpis', '$obsah', '$scrollText', '2023-08-01 07:45:54', '', '', '0', '".$_SESSION['user_id']."');";
+            $sql = "INSERT INTO infotabdb.prezentace (nadpis, obsah, scrolltext, vyditelnost, createdby, modifiedby, aktivni, uzivatele_id) VALUES ('$nadpis', '$obsah', '$scrollText', '2023-08-01 07:45:54', '".$_SESSION['jmeno']."', '', '0', '".$_SESSION['user_id']."');";
         }
         if (mysqli_query($con, $sql)) {
             echo "Data inserted successfully";

@@ -1,0 +1,8 @@
+# .htaccess pro infotab
+<IfModule mod_rewrite.c>
+
+# verzovani js a css (prepis file-001.css, file-002.css, ... na file.css)
+RewriteEngine On
+RewriteRule ^(.+)-([\d]+)\.(js|css)$ $1.$3 [L]
+
+</IfModule>

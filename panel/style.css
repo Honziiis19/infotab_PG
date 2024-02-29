@@ -1,0 +1,84 @@
+.top-info {
+    font-family: sans-serif;
+    font-weight: bold;
+    border: 0.12rem;
+    background: rgb(117, 193, 210);
+    border-radius: 0.3rem;
+    padding: 0.9rem;
+}
+.datetime-info {
+    border: 0.125rem;
+    border-radius: 0.3125rem;
+    background-color: rgb(215, 254, 255);
+    margin-bottom: 2.5%;
+}
+#clock {
+    font-size: 5rem;
+    width: 98%;
+    margin: auto;
+    text-align: center;
+    padding: 0.125rem;
+}
+#date {
+    text-align: center;
+    padding-bottom: 0.625rem;
+}
+div#weather > p > img {
+    height: 3.125rem;
+    width: 3.125rem;
+}
+#stav, #teplota, #deg, #date {
+  font-size: 2em;
+}
+#weather {
+    margin-top: 1em;
+    font-weight: bold;
+}
+#teplota{
+    margin-left: 0.2rem;
+}
+#news {
+	margin-top: 1em;
+	padding: 0.625rem;
+}
+#tlak, #vlhkost, #news {
+  font-size: 1.5em;
+}
+#udalosti {
+    font-family: sans-serif;
+    padding-top: 1em;
+	font-size: 1em;
+	font-weight: bold;
+}
+#scrollable::-webkit-scrollbar{
+    display: none;
+}
+#scrollable{
+    overflow-y: scroll;
+    -ms-overflow-style: none; 
+    scrollbar-width: none; 
+    height: 70%;
+}
+#Aktuálně {
+    font-family: sans-serif;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+    padding-top: 0.5em; 
+    margin-bottom: -1.25rem;
+}
+#udalosti > div {
+    min-height: 2em;
+    background-color: rgb(117, 193, 210);
+    margin: 3.5%;
+    padding: 10;
+    border-radius: 0.3125rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#udalosti a {
+    text-align: center;
+    text-decoration: underline;
+    color: black;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script>
+  // CORS ok
+  async function parseXML()
+  {
+    let rss = await fetch('getrss.php');
+    let text = await rss.text();
+    //console.log(xml);
+    // parser xml
+    parser = new DOMParser();
+    xml = parser.parseFromString(text, "text/xml");
+    
+    let items = xml.getElementsByTagName("item");
+    for (i = 0; i < items.length & i<4; i++) {
+      let item = items[i];
+      //console.log(item.innerHTML);
+      //console.log(item);
+      
+      let novinka = (item.getElementsByTagName("title")[0].firstChild.data);
+      let div = document.createElement("div");
+      let text = document.createTextNode(novinka);
+      div.appendChild(text);
+      document.body.appendChild(div);
+
+      
+
+    }
+    
+    
+
+  }
+  
+  
+  </script>  
+</head>
+<body onload = "parseXML()">
+
+</body>
+</html>
